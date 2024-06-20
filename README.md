@@ -33,5 +33,5 @@ Duc Anh co dang cap khong ?
 
 ## Support
 
-For support, email anhpdhe180659@fpt.edu.vn or via Facebook [](https://www.facebook.com/profile.php?id=100049276027890) : Đức Anh.
+For support, email anhpdhe180659@fpt.edu.vn or via Facebook: [Đức Anh](https://www.facebook.com/profile.php?id=100049276027890)
 

@@ -6,7 +6,7 @@ A best website to manage your dorm
 
 ## Tech Stack
 
-**Client:** React, Redux
+**Client:** Thymeleaf, Bootstrap
 
 **Server:** SpringBoot
 

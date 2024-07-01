@@ -28,7 +28,7 @@ public class UserService {
 
     public UserResponse createUser(UserCreateRequest request) {
         User user = new User();
-        if (userRepository.findUserByUsername(request.getUsername()) != null || userRepository.findByEmail(request.getEmail()) != null) {
+        if (userRepository.findByUsername(request.getUsername()) != null || userRepository.findByEmail(request.getEmail()) != null) {
             return null;
         } else {
             user = userMapper.toUser(request);
@@ -38,10 +38,7 @@ public class UserService {
         }
     }
 
-    public UserResponse getUserById(int id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-        return userMapper.toUserResponse(user);
-    }
+
 
     public UserResponse updateUser(int id, UserUpdateRequest request) {
         User user = userRepository.findById(id + "").orElseThrow(() -> new RuntimeException("User not found"));
@@ -52,13 +49,17 @@ public class UserService {
     }
 
     public UserResponse loginUser(AuthenticationRequest request) {
-        User user = (User) userRepository.findUserByUsername(request.getUsername()).orElseThrow(() -> {
+        User user = userRepository.findByUsername(request.getUsername());
+        if (user == null) {
             return null;
-        });
-        if (passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            return userMapper.toUserResponse(user);
+        } else {
+            boolean checkPass = passwordEncoder.matches(request.getPassword(),user.getPassword());
+            if (checkPass) {
+                return userMapper.toUserResponse(user);
+            }else{
+                return null;
+            }
         }
-        return null;
     }
 
 }

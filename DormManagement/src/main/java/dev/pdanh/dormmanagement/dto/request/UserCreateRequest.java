@@ -4,6 +4,8 @@ import jakarta.validation.Valid;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import jakarta.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 @NoArgsConstructor
 @Data
@@ -14,6 +16,7 @@ public class UserCreateRequest {
     String firstName;
     String lastName;
     String gender;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date dob;
     @Size(min = 10,max = 10, message = "PHONENUMBER_LENGTH")
     String phoneNumber;

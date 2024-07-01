@@ -25,23 +25,7 @@ public class UserController {
     UserMapper userMapper;
     private final UserRepository userRepository;
 
-    @GetMapping("/signUp")
-    public String signUpPage() {
-        return "signUp";
-    }
 
-    @PostMapping("/signUp")
-    public String signUpPage(Model model, @RequestParam UserCreateRequest request) {
-        if (repository.findUserByUsername(request.getUsername()).isPresent()
-                || repository.findByEmail(request.getEmail()).isPresent()) {
-            model.addAttribute("error", "Username or Email was taken.");
-            return "redirect:/signUp";
-        } else {
-            User userSignUp = userMapper.toUser(request);
-            userRepository.save(userSignUp);
-            return "redirect:/signIn";
-        }
-    }
 
 //    @PostMapping("/update")
 //    public String updateUser(@RequestParam UserUpdateRequest request) {

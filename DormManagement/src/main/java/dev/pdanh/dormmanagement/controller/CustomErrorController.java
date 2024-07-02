@@ -12,6 +12,7 @@ public class CustomErrorController implements ErrorController {
     @GetMapping
     public String handleError(HttpServletRequest request) {
         // Retrieve the error status code
+
         Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
         if (statusCode != null) {
             if (statusCode == 404) {

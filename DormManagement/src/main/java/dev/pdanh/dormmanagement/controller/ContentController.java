@@ -40,6 +40,10 @@ public class ContentController {
     public String loginPage(Model model) {
         AuthenticationRequest authenticationRequest = new AuthenticationRequest();
         model.addAttribute("signInRequest", authenticationRequest);
+        String warning = (String) model.asMap().get("warning");
+        if (warning != null) {
+            model.addAttribute("warning", warning);
+        }
         return "Frontend-Dorm/login";
     }
 

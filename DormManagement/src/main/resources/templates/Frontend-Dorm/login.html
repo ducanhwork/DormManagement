@@ -59,8 +59,11 @@
                             </div>
                         </div>
                     </div>
+                    <div th:if="${warning}">
+                        <p style="color: red; text-transform: uppercase;font-family: 'Poppins', sans-serif;font-weight: 600" th:text="${warning}"></p>
+                    </div>
                     <div th:if="${err}">
-                        <p style="color: red" th:text="${err}">Invalid username or password</p>
+                        <p style="color: red" th:text="${err}"></p>
                     </div>
                     <form th:action="@{/auth/login}" method="post" th:object="${signInRequest}">
                         <div class="row gy-3 gy-md-4 overflow-hidden">

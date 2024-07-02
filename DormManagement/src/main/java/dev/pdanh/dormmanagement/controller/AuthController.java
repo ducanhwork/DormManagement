@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,9 +60,19 @@ public class AuthController {
 
         if (userResponse != null) {
             session.setAttribute("user", userResponse);
-            return "Frontend-Dorm/home";
+            return "redirect:/admin/home";
         } else {
             model.addAttribute("err", "Username or password incorrect");
+            return "Frontend-Dorm/login";
+        }
+    }
+    @GetMapping("/logout")
+    public String logout(HttpSession session, Model model) {
+        if(session.getAttribute("user") != null) {
+            session.invalidate();
+            return "redirect:/index";
+        }else{
+            model.addAttribute("warning","You are not log in");
             return "Frontend-Dorm/login";
         }
     }

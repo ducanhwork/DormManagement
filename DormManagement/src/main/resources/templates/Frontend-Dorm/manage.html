@@ -5,8 +5,6 @@
     <title>Dashboard</title>
     <script th:src="@{https://unpkg.com/boxicons@2.1.4/dist/boxicons.js}"></script>
     <link th:href='@{https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css}' rel='stylesheet'>
-    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/dashboard.css}">
 </head>
 <body>
@@ -18,18 +16,21 @@
     <div id="popupForm" class="form-popup" th:object="${dormCreateRequest}">
         <form action="/dorm/create" method="post" class="form-container">
             <h2>Contact Us</h2>
+
             <label><b>Name</b></label>
             <input type="text" placeholder="Enter Your Dorm Name" name="name" th:field="*{name}" required>
+
             <label><b>Number Of Room</b></label>
             <input type="text" placeholder="Enter Number of Room" th:field="*{numberRoom}" required>
+
             <label><b>Address</b></label>
             <textarea placeholder="Enter Your Dorm Address" th:field="*{address}" required></textarea>
+
             <button type="submit" class="btn">Submit</button>
             <button type="button" class="btn cancel" id="closePopupBtn">Close</button>
         </form>
     </div>
 </div>
-
 <div class="dorm-dashboard" th:if="${listDorm}">
     <h2 class="title-dorm">Dorm Dashboard</h2>
     <div class="list-dorm-container" th:each="dorm: ${listDorm}">
@@ -37,12 +38,7 @@
             <h2>Name: <span th:text="${dorm.name}"></span></h2>
             <p>Address: <span th:text="${dorm.address}"></span></p>
             <p>Number of rooms: <span th:text="${dorm.numberRoom}"></span></p>
-            <div class="container">
-                <h2 align="center">Data Graph</h2>
-                <div th:attr="id='container-' + ${dorm.id}" style="width: 550px; height: 400px; margin: 0 auto"></div>
-            </div>
-        </div>
-        <br>
+        </div><br>
     </div>
     <button id="openPopupBtn1" class="open-button">Add dorm</button>
 
@@ -50,23 +46,21 @@
     <div id="popupForm1" class="form-popup" th:object="${dormCreateRequest}">
         <form action="/dorm/create" method="post" class="form-container">
             <h2>Contact Us</h2>
+
             <label><b>Name</b></label>
             <input type="text" placeholder="Enter Your Dorm Name" name="name" th:field="*{name}" required>
+
             <label><b>Number Of Room</b></label>
             <input type="text" placeholder="Enter Number of Room" th:field="*{numberRoom}" required>
+
             <label><b>Address</b></label>
             <textarea placeholder="Enter Your Dorm Address" th:field="*{address}" required></textarea>
+
             <button type="submit" class="btn">Submit</button>
             <button type="button" class="btn cancel" id="closePopupBtn1">Close</button>
         </form>
     </div>
 </div>
-
 <script th:src="@{/js/dashboard.js}"></script>
-<script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
-<script th:src="@{https://code.highcharts.com/highcharts.js}"></script>
-<script th:src="@{https://code.highcharts.com/modules/exporting.js}"></script>
-
-
 </body>
 </html>

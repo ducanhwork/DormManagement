@@ -17,7 +17,7 @@ public class User {
     int id;
     String firstName;
     String lastName;
-    Boolean gender;
+    String gender;
     Date dob;
     String phoneNumber;
     String address;
@@ -51,11 +51,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Boolean getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 

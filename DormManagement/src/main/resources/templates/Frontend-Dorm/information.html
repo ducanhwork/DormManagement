@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Information</title>
+    <title>User Information</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/user-info.css}">
 </head>
 <body>
+<div class="container">
+    <div class="user-info-card">
+        <h1>User Information</h1>
+        <div class="user-details">
+            <p><strong>Username:</strong> <span th:text="${userLogin.username}"></span></p>
+            <p><strong>Email:</strong> <span th:text="${userLogin.email}"></span></p>
+            <p><strong>Full Name:</strong> <span th:text="${userLogin.firstName} + ' '+ ${userLogin.lastName}"></span>
+            </p>
+            <p><strong>Gender:</strong> <span th:text="${userLogin.gender} "></span></p>
+            <p><strong>Date of birth:</strong> <span th:text="${userLogin.dob}"></span></p>
+            <p><strong>Phone:</strong> <span th:text="${userLogin.phoneNumber}"></span></p>
+            <p><strong>Address:</strong> <span th:text="${userLogin.address}"></span></p>
+            <p><strong>Identify number:</strong> <span th:text="${userLogin.identifyNumber}"></span></p>
 
+            <!-- Add more fields as needed -->
+        </div>
+
+    </div>
+</div>
 </body>
 </html>

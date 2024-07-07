@@ -78,7 +78,10 @@ public class AuthContentController {
             return "Frontend-Dorm/login";
         }
     }
-
+    @GetMapping("/service")
+    public String servie(Model model, HttpSession session) {
+        return "Frontend-Dorm/service";
+    }
     @GetMapping("/infor")
     public String information(HttpSession session, Model model, RedirectAttributes redirectAttributes) {
         if (checkIfLogin(session)) {
@@ -89,7 +92,10 @@ public class AuthContentController {
             return "redirect:/signin";
         }
     }
-
+    @GetMapping("/payment")
+    public String payment(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+        return "Frontend-Dorm/payment";
+    }
     //REUSABLE FUNCTION
     public boolean checkIfLogin(HttpSession session) {
         if (session.getAttribute("user") != null) {

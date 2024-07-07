@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Management</title>
+    <link rel="stylesheet" th:href="@{/css/payment.css}">
+</head>
+<body>
+<div class="container">
+    <div class="tabs">
+        <button class="tab-button" onclick="openTab(event, 'current-month')">Các phòng tháng này thanh toán</button>
+        <button class="tab-button" onclick="openTab(event, 'next-month')">Các phòng tháng sau thanh toán</button>
+        <button class="tab-button" onclick="openTab(event, 'history')">Lịch sử các phòng đã thanh toán</button>
+    </div>
+
+    <div id="current-month" class="tab-content">
+        <select id="houseSelect">
+            <option>Chọn nhà</option>
+            <!-- Add house options here -->
+        </select>
+        <input type="text" id="searchInput" placeholder="Nhập tên hoặc số điện thoại người thuê" onkeyup="filterTable()">
+        <button class="search-btn">🔍</button>
+
+        <table id="paymentTable">
+            <thead>
+            <tr>
+                <th>Nhà</th>
+                <th>Phòng</th>
+                <th>Tên khách</th>
+                <th>Số tiền (VNĐ)</th>
+                <th>Đã trả (VNĐ)</th>
+                <th>Còn lại (VNĐ)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan="6" class="no-data">Chưa có phòng cần thanh toán trong tháng này</td>
+            </tr>
+            <!-- Add table rows here dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="next-month" class="tab-content" style="display:none;">
+        <!-- Content for next month's payments -->
+    </div>
+
+    <div id="history" class="tab-content" style="display:none;">
+        <!-- Content for payment history -->
+    </div>
+</div>
+<script th:src="@{/js/payment.js}"></script>
+</body>
+</html>

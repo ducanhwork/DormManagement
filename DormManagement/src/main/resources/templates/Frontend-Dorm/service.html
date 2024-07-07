@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Service</title>
+    <link rel="stylesheet" th:href="@{/css/service.css}">
+</head>
+<body>
+<div class="container">
+    <input type="text" id="searchInput" placeholder="Nhập tên dịch vụ" onkeyup="filterTable()">
+    <button class="add-btn">+ Thêm dịch vụ</button>
+    <button class="delete-btn">Xóa</button>
+
+    <table id="servicesTable">
+        <thead>
+        <tr>
+            <th><input type="checkbox" id="selectAll"></th>
+            <th>Tên</th>
+            <th>Loại dịch vụ</th>
+            <th>Đơn giá (vnd)</th>
+            <th>Hành động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>Điện</td>
+            <td>Điện</td>
+            <td>1,728 (bậc thang)</td>
+            <td>
+                <button class="edit-btn">✏️</button>
+                <button class="delete-btn">🗑️</button>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>Nước</td>
+            <td>Nước</td>
+            <td>6,700 (bậc thang)</td>
+            <td>
+                <button class="edit-btn">✏️</button>
+                <button class="delete-btn">🗑️</button>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>Rác</td>
+            <td>Khác</td>
+            <td>30,000</td>
+            <td>
+                <button class="edit-btn">✏️</button>
+                <button class="delete-btn">🗑️</button>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>Vệ sinh nhà</td>
+            <td>Khác</td>
+            <td>100,000</td>
+            <td>
+                <button class="edit-btn">✏️</button>
+                <button class="delete-btn">🗑️</button>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>Internet</td>
+            <td>Khác</td>
+            <td>30,000</td>
+            <td>
+                <button class="edit-btn">✏️</button>
+                <button class="delete-btn">🗑️</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script th:src="@{/js/service.js}"></script>
+</body>
+</html>

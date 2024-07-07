@@ -1,18 +1,20 @@
 package dev.pdanh.dormmanagement.dto.response;
-
-import dev.pdanh.dormmanagement.model.User;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
-public class DormResponse {
-    String name;
-    int numberRoom;
+public class GuestResponse {String firstName;
+    String lastName;
+    String gender;
+    Date dob;
+    String phoneNumber;
     String address;
-    int roomsOnLease;
-    User user;
+    String identifyNumber;
+    String email;
 }

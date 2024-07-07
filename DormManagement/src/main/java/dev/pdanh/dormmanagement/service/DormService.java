@@ -19,12 +19,19 @@ import java.util.List;
 public class DormService {
     DormRepository repository;
     DormMapper dormMapper;
+
     public List<Dorm> getAll(User user){
         return repository.findAllByUser(user);
     }
+
     public DormResponse createDorm(DormCreateRequest request){
         Dorm dorm = dormMapper.toDorm(request);
-        repository.save(dorm);
-        return dormMapper.toDormResponse(dorm);
+        Dorm savedDorm = repository.save(dorm);
+        return dormMapper.toDormResponse(savedDorm);
+    }
+
+    public Dorm findDormById(int id){
+        Dorm dorm = repository.findById(id);
+        return dorm != null ? dorm : null;
     }
 }

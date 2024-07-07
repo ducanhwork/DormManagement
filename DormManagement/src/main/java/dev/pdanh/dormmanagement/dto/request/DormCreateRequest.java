@@ -1,9 +1,7 @@
 package dev.pdanh.dormmanagement.dto.request;
 
 import dev.pdanh.dormmanagement.model.User;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
@@ -15,6 +13,7 @@ public class DormCreateRequest {
     String name;
     int numberRoom;
     String address;
+     int roomsOnLease = 0;
     User user;
 
 }

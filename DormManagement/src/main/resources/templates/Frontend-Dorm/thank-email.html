@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thank You for Renting</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #00a780;
+            color: #ffffff;
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        .content {
+            padding: 20px;
+        }
+        h1 {
+            color: #333333;
+        }
+        p {
+            line-height: 1.5;
+            color: #555555;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            padding: 5px 0;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            color: #777777;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <div class="header">
+        <h1>Thank You for Renting</h1>
+    </div>
+    <div class="content">
+        <p>Dear <span th:text="${guest.firstName}">Guest</span>,</p>
+        <p>Thank you for choosing to rent a room with us. Below are the details of your rental contract:</p>
+
+        <p><strong>Guest Information:</strong></p>
+        <ul>
+            <li>First Name: <span th:text="${guest.firstName}"></span></li>
+            <li>Last Name: <span th:text="${guest.lastName}"></span></li>
+            <li>Email: <span th:text="${guest.email}"></span></li>
+            <li>Phone Number: <span th:text="${guest.phoneNumber}"></span></li>
+            <li>Address: <span th:text="${guest.address}"></span></li>
+        </ul>
+
+        <p><strong>Dorm Information:</strong></p>
+        <ul>
+            <li>Dorm Name: <span th:text="${dorm.name}"></span></li>
+            <li>Address: <span th:text="${dorm.address}"></span></li>
+        </ul>
+
+        <p>Thank you for choosing our service!</p>
+        <p>Best regards,</p>
+        <p>The Dorm Management Team</p>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Dorm Management. All rights reserved.</p>
+    </div>
+</div>
+</body>
+</html>

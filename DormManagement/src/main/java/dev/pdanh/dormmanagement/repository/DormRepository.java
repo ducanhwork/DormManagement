@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface DormRepository extends JpaRepository<Dorm, Integer> {
    List<Dorm> findAllByUser(User user);
+   Dorm findById(int id);
 }

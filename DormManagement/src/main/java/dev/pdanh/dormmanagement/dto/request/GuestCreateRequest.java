@@ -1,23 +1,17 @@
-package dev.pdanh.dormmanagement.model;
+package dev.pdanh.dormmanagement.dto.request;
 
-import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Data;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-@Entity
-
 @Data
-
+@AllArgsConstructor
+@NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Guest {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+@Builder
+public class GuestCreateRequest {
     String firstName;
     String lastName;
     String gender;
@@ -27,5 +21,4 @@ public class Guest {
     String address;
     String identifyNumber;
     String email;
-
 }

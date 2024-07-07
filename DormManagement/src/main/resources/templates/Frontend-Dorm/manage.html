@@ -5,7 +5,7 @@
     <title>Dashboard</title>
     <script th:src="@{https://unpkg.com/boxicons@2.1.4/dist/boxicons.js}"></script>
     <link th:href='@{https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css}' rel='stylesheet'>
-    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/manage.css}">
 </head>
 <body>
 <div th:if="${noticedorm}">
@@ -32,19 +32,26 @@
     </div>
 </div>
 <div class="dorm-dashboard" th:if="${listDorm}">
-    <h2 class="title-dorm">Dorm Dashboard</h2>
+    <h2 class="title-dorm">Dorm Manage</h2>
     <div class="list-dorm-container" th:each="dorm: ${listDorm}">
+
         <div class="dorm-container">
-            <h2>Name: <span th:text="${dorm.name}"></span></h2>
-            <p>Address: <span th:text="${dorm.address}"></span></p>
-            <p>Number of rooms: <span th:text="${dorm.numberRoom}"></span></p>
-        </div><br>
+            <div class="box-name">
+                <h2><i class='bx bx-home'></i>&nbsp;<span th:text="${dorm.name}"></span></h2><br>
+            </div>
+            <div class="dorm-info">
+                <p>Number room: <span th:text="${dorm.numberRoom}"></span></p>
+                <p>Address: <span th:text="${dorm.address}"></span></p>
+            </div>
+            <a class="btn-manage" th:href="@{/dorm/manage/{id}(id=${dorm.id})}">Manage</a>
+        </div>
+        <br>
     </div>
     <button id="openPopupBtn1" class="open-button">Add dorm</button>
 
     <!-- The Popup Form -->
     <div id="popupForm1" class="form-popup" th:object="${dormCreateRequest}">
-        <form action="/dorm/create" method="post" class="form-container">
+        <form th:action="@{/dorm/create}" method="post" class="form-container">
             <h2>Contact Us</h2>
 
             <label><b>Name</b></label>
@@ -61,6 +68,6 @@
         </form>
     </div>
 </div>
-<script th:src="@{/js/dashboard.js}"></script>
+<script th:src="@{/js/manage.js}"></script>
 </body>
 </html>

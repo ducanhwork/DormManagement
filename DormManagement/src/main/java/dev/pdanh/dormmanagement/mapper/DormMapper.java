@@ -9,4 +9,5 @@ import org.mapstruct.Mapper;
 public interface DormMapper {
     Dorm toDorm(DormCreateRequest request);
     DormResponse toDormResponse(Dorm dorm);
+    Dorm toDorm(DormResponse response);
 }

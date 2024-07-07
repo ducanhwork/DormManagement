@@ -34,11 +34,13 @@
     <h2 class="title-dorm">Dorm Dashboard</h2>
     <div class="list-dorm-container" th:each="dorm: ${listDorm}">
         <div class="dorm-container">
-            <h2>Name: <span th:text="${dorm.name}"></span></h2>
-            <p>Address: <span th:text="${dorm.address}"></span></p>
-            <p>Number of rooms: <span th:text="${dorm.numberRoom}"></span></p>
+            <div class="info-dorm">
+                <h2 style="text-align: center; color: #0c2744">Information</h2><br>
+                <h2>Name: <span th:text="${dorm.name}"></span></h2>
+                <p>Address: <span th:text="${dorm.address}"></span></p>
+                <p>Number of rooms: <span th:text="${dorm.numberRoom}"></span></p>
+            </div>
             <div class="container">
-                <h2 align="center">Data Graph</h2>
                 <div th:attr="id='container-' + ${dorm.id}" style="width: 550px; height: 400px; margin: 0 auto"></div>
             </div>
         </div>
@@ -63,6 +65,46 @@
 </div>
 
 <script th:src="@{/js/dashboard.js}"></script>
+<script th:inline="javascript">
+    var dormData = [[${listDorm}]];
+    document.addEventListener('DOMContentLoaded', function () {
+        dormData.forEach(function (dorm) {
+            var containerId = 'container-' + dorm.id;
+            var data = [
+                {name: 'Empty', y: dorm.numberRoom - dorm.roomsOnLease},
+                {name: 'On lease', y: dorm.roomsOnLease}
+            ];
+            Highcharts.chart(containerId, {
+                colors: ['#01BAF2', '#71BF45', '#FAA74B', '#B37CD2'],
+                chart: {
+                    type: 'pie'
+                },
+                title: {
+                    text: dorm.name + ' - Number of rooms'
+                },
+                tooltip: {
+                    valueSuffix: '%'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.name}: {y}'
+                        },
+                        showInLegend: true
+                    }
+                },
+                series: [{
+                    name: 'Rooms',
+                    colorByPoint: true,
+                    data: data
+                }]
+            });
+        });
+    });
+</script>
 <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
 <script th:src="@{https://code.highcharts.com/highcharts.js}"></script>
 <script th:src="@{https://code.highcharts.com/modules/exporting.js}"></script>

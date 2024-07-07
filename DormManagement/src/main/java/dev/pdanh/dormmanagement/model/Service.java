@@ -1,9 +1,6 @@
 package dev.pdanh.dormmanagement.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -15,4 +12,7 @@ public class Service {
     int id;
     String name;
     Double cost;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "dormID", unique = false)
+    Dorm dorm;
 }

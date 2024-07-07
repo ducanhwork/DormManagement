@@ -23,6 +23,7 @@ public class DormMapperImpl implements DormMapper {
 
         dorm.setName( request.getName() );
         dorm.setNumberRoom( request.getNumberRoom() );
+        dorm.setRoomsOnLease( request.getRoomsOnLease() );
         dorm.setAddress( request.getAddress() );
         dorm.setUser( request.getUser() );
 
@@ -35,8 +36,31 @@ public class DormMapperImpl implements DormMapper {
             return null;
         }
 
-        DormResponse dormResponse = new DormResponse();
+        DormResponse.DormResponseBuilder dormResponse = DormResponse.builder();
 
-        return dormResponse;
+        dormResponse.name( dorm.getName() );
+        dormResponse.numberRoom( dorm.getNumberRoom() );
+        dormResponse.address( dorm.getAddress() );
+        dormResponse.roomsOnLease( dorm.getRoomsOnLease() );
+        dormResponse.user( dorm.getUser() );
+
+        return dormResponse.build();
+    }
+
+    @Override
+    public Dorm toDorm(DormResponse response) {
+        if ( response == null ) {
+            return null;
+        }
+
+        Dorm dorm = new Dorm();
+
+        dorm.setName( response.getName() );
+        dorm.setNumberRoom( response.getNumberRoom() );
+        dorm.setRoomsOnLease( response.getRoomsOnLease() );
+        dorm.setAddress( response.getAddress() );
+        dorm.setUser( response.getUser() );
+
+        return dorm;
     }
 }

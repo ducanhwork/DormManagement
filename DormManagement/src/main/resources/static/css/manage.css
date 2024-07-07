@@ -110,34 +110,51 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.dorm-container h2, .dorm-container p {
+ .dorm-container p {
     margin: 10px 0;
     font-size: 16px;
     color: #333;
 }
 
-.dorm-container h2 span, .dorm-container p span {
+.dorm-container p span {
     font-weight: normal;
     color: #555;
 }
-
-.dorm-container h2 {
+.dorm-container{
+    position: relative;
+}
+.dorm-container .box-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    background: #00B98E;
+    height: 25px;
+    width: 150px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.dorm-container .box-name h2 {
     font-size: 18px;
-    color: #007bff;
+    color: #fafafa;
     font-weight: bold;
+}
+.dorm-container .btn-manage{
+    display: block;
+    text-align: center;
+    background: #48b7c9;
+    width: 100px;
+    height: fit-content;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #ffffff;
+
 }
 .title-dorm{
     text-transform: uppercase;
     font-style: italic;
     text-align: center;
     color: #006f55;
-}
-.dorm-container{
-    display: flex;
-}
-.dorm-container .info-dorm{
-    display: block;
-    width: calc(100% / 2);
-    border-right: 1px solid #4d514e;
-
 }

@@ -14,6 +14,7 @@ public class Dorm {
     int id;
     String name;
     int numberRoom;
+    int roomsOnLease = 0 ;
     String address;
 
     @ManyToOne(cascade = CascadeType.MERGE)

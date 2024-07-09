@@ -17,7 +17,7 @@
     <!-- The Popup Form -->
     <div id="popupForm" class="form-popup" th:object="${dormCreateRequest}">
         <form action="/dorm/create" method="post" class="form-container">
-            <h2>Contact Us</h2>
+            <h2>Dorm Information</h2>
             <label><b>Name</b></label>
             <input type="text" placeholder="Enter Your Dorm Name" name="name" th:field="*{name}" required>
             <label><b>Number Of Room</b></label>
@@ -46,23 +46,7 @@
         </div>
         <br>
     </div>
-    <button id="openPopupBtn1" class="open-button">Add dorm</button>
 
-    <!-- The Popup Form -->
-    <div id="popupForm1" class="form-popup" th:object="${dormCreateRequest}">
-        <form action="/dorm/create" method="post" class="form-container">
-            <h2>Contact Us</h2>
-            <label><b>Name</b></label>
-            <input type="text" placeholder="Enter Your Dorm Name" name="name" th:field="*{name}" required>
-            <label><b>Number Of Room</b></label>
-            <input type="text" placeholder="Enter Number of Room" th:field="*{numberRoom}" required>
-            <label><b>Address</b></label>
-            <textarea placeholder="Enter Your Dorm Address" th:field="*{address}" required></textarea>
-            <button type="submit" class="btn">Submit</button>
-            <button type="button" class="btn cancel" id="closePopupBtn1">Close</button>
-        </form>
-    </div>
-</div>
 
 <script th:src="@{/js/dashboard.js}"></script>
 <script th:inline="javascript">

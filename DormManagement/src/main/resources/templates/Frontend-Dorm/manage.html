@@ -43,7 +43,11 @@
                 <p>Number room: <span th:text="${dorm.numberRoom}"></span></p>
                 <p>Address: <span th:text="${dorm.address}"></span></p>
             </div>
-            <a class="btn-manage" th:href="@{/dorm/manage/{id}(id=${dorm.id})}">Manage</a>
+            <div class="btn-container">
+                <a class="btn-manage" th:href="@{/dorm/manage/{id}(id=${dorm.id})}">Manage</a>
+                <a class="btn-delete" th:href="@{/dorm/delete/{id}(id = ${dorm.id})}" onsubmit="return confirmDelete()">Delete</a>
+            </div>
+
         </div>
         <br>
     </div>

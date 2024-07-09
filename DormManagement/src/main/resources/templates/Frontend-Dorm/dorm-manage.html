@@ -8,34 +8,41 @@
     <link th:href='@{https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css}' rel='stylesheet'>
 </head>
 <body>
-
+<div class="btn-back">
+    <a th:href="@{/admin/manage}">Back</a>
+</div>
 <div class="dorm-container">
     <!-- Thymeleaf iteration for each room -->
     <div th:object="${dormfound}">
         <h2>Dorm : <span th:text="${dormfound.name}"></span></h2>
         <p>Address : <span th:text="${dormfound.address}"></span></p>
+        <div class="nav-bar">
+            <a th:href="@{/guest/list/{id}(id=${dormfound.id})}">Guest List</a>
+
+        </div>
     </div>
     <hr>
-    <div class="nav-bar">
-        <a th:href="@{/guest/list}">Guest List</a>
-        <a th:href="@{/room/list}">Room List</a>
-    </div>
     <br><br>
     <hr>
     <h1>Room</h1>
-    <div class="room-list-container">
+    <div class="room-list-container" th:object="${guestRoomTable}">
         <div class="room-container" th:each="room : ${listroom}" th:id="'room_' + ${room.roomNum}">
             <h2><i class='bx bx-home-heart'></i>&nbsp;&nbsp;<span th:text="'Room ' + ${room.roomNum}"></span></h2>
             <br>
             <p>Status: <span th:text="${room.status ? 'Empty' : 'On lease'}"></span></p>
             <hr>
-            <p th:if="${room.status}">Guest: <span th:text="${}"></span></p>
+            <p th:if="${!room.status}">Guest: <span th:if="${guestRoomTable}"
+                                                    th:text="${guestRoomTable.get(room).firstName + ' ' + guestRoomTable.get(room).lastName}"></span>
+            </p>
             <br>
-            <button class="open-button" th:id="'openPopupBtn_' + ${room.roomNum}"><i class='bx bx-user-plus'></i>&nbsp;&nbsp;Add
-                Guest
+            <button th:if="${room.status}" class="open-button" th:id="'openPopupBtn_' + ${room.roomNum}"><i
+                    class='bx bx-user-plus'></i>&nbsp;&nbsp;Add
+            </button>
+            <button th:if="${!room.status}" class="open-button" th:id="'openPopupBtn_' + ${room.roomNum}"><i
+                    class='bx bx-user-plus'></i>&nbsp;&nbsp;Modify
             </button>
             <!-- The Popup Form -->
-            <div class="form-popup" th:id="'popupForm_' + ${room.roomNum}">
+            <div th:if="${room.status}" class="form-popup" th:id="'popupForm_' + ${room.roomNum}">
                 <form th:action="@{/guest/add/{id}(id = ${dormfound.id})}" method="post" class="form-container"
                       th:object="${guestCreateRequest}">
                     <h2 style="color: #00a780"><i class='bx bx-user'></i>&nbsp;&nbsp;Guest Information</h2>
@@ -69,6 +76,46 @@
                     </div>
 
                     <button type="submit" class="btn">Submit</button>
+                    <button type="button" class="btn cancel" th:id="'closePopupBtn_' + ${room.roomNum}">Close</button>
+                </form>
+            </div>
+            <!--            Case co khach roi-->
+            <div th:if="${!room.status}" class="form-popup" th:id="'popupForm_' + ${room.roomNum}">
+                <form  th:action="@{/guest/update/{id}(id = ${guestRoomTable.get(room).id})}" method="post"
+                      class="form-container"
+                      th:object="${guestRoomTable.get(room)}">
+                    <h2 style="color: #00a780"><i class='bx bx-user'></i>&nbsp;&nbsp;Guest Information</h2>
+                    <br>
+                    <label><b>First Name</b></label>
+                    <input type="text" placeholder="Enter Your Firstname" name="name" th:value="${guestRoomTable.get(room).firstName}" required>
+                    <label><b>Last Name</b></label>
+                    <input type="text" placeholder="Enter Your Lastname" name="name" th:value="${guestRoomTable.get(room).lastName}" required>
+                    <label><b>Gender</b></label>
+                    <select name="gender" th:value="${guestRoomTable.get(room).gender}" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select><br><br>
+                    <label><b>Date of birth</b></label>
+                    <input type="date" th:value="${dob}" required>
+                    <label><b>Phone Number</b></label>
+                    <input type="text" placeholder="Enter Phone" name="phoneNumber" th:value="${guestRoomTable.get(room).phoneNumber}" required>
+                    <label><b>Address</b></label>
+                    <input type="text" placeholder="Enter Your Address" name="address" th:value="${guestRoomTable.get(room).address}" required>
+                    <label><b>Identify Number</b></label>
+                    <input type="text" placeholder="Enter your identify number" name="identifyNumber"
+                           th:value="${guestRoomTable.get(room).identifyNumber}" required>
+                    <label><b>Email</b></label>
+                    <input type="email" placeholder="Enter your mail" name="email" th:value="${guestRoomTable.get(room).email}" required>
+                    <!--                    <input type="hidden" th:value="${room.id}" name="roomId">-->
+                    <!--                    <div class="lease-container" th:object="${leaseCreate}">-->
+                    <!--                        <label><b>Start date</b></label>-->
+                    <!--                        <input type="date" th:field="*{startDate}" required>-->
+                    <!--                        <label><b>End date</b></label>-->
+                    <!--                        <input type="date" th:field="*{endDate}" required>-->
+                    <!--                    </div>-->
+
+                    <button type="submit" class="btn">Submit</button>
+                    <a th:href="@{/guest/delete/{id}(id = ${guestRoomTable.get(room).id})}">Delete</a>
                     <button type="button" class="btn cancel" th:id="'closePopupBtn_' + ${room.roomNum}">Close</button>
                 </form>
             </div>

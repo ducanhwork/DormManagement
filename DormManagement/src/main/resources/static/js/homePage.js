@@ -6,7 +6,7 @@ toggle.addEventListener("click", () => {
     sidebar.classList.toggle("close");
 });
 
-function showSection(sectionId) {
+function showSection(sectionId,url) {
     // Hide all sections
     const sections = document.querySelectorAll('.section-content');
     sections.forEach(section => section.classList.remove('active'));
@@ -14,11 +14,14 @@ function showSection(sectionId) {
     // Show the selected section
     const selectedSection = document.getElementById(sectionId);
     selectedSection.classList.add('active');
+    // Reload the iframe
+    const iframe = selectedSection.querySelector('iframe');
+    iframe.src = url;
 }
 
 // Show the default section (e.g., dashboard) on page load
 document.addEventListener('DOMContentLoaded', () => {
-    showSection('dashboard');
+    showSection('dashboard','/admin/dashboard');
 });
 
 function updateURL(newURL) {

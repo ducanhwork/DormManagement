@@ -132,7 +132,7 @@
     left: 0;
     background: #00B98E;
     height: 25px;
-    width: 150px;
+    width: fit-content;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
 }
@@ -141,16 +141,27 @@
     color: #fafafa;
     font-weight: bold;
 }
-.dorm-container .btn-manage{
+.dorm-container .btn-manage,.btn-delete{
     display: block;
     text-align: center;
-    background: #48b7c9;
+
     width: 100px;
     height: fit-content;
     border-radius: 4px;
     text-decoration: none;
     color: #ffffff;
+}
 
+.btn-container{
+    display: flex;
+    justify-content: space-between ;
+    width: 250px;
+}
+.btn-manage{
+    background: #48b7c9;
+}
+.btn-delete{
+    background: #e03e3e;
 }
 .title-dorm{
     text-transform: uppercase;

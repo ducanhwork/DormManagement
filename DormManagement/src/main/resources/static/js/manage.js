@@ -41,3 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+function confirmDelete() {
+    return confirm("Do you want to delete this dom ?");
+}
